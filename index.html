@@ -511,16 +511,41 @@
     @media (max-width: 980px) {
       .site-header {
         grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "brand action"
+          "nav nav";
+        row-gap: 16px;
+      }
+
+      .brand {
+        grid-area: brand;
       }
 
       .nav {
+        grid-area: nav;
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+
+      .nav::-webkit-scrollbar {
         display: none;
+      }
+
+      .header-action {
+        grid-area: action;
+      }
+
+      .hero {
+        padding-top: 172px;
       }
 
       .hero {
         grid-template-columns: 1fr;
         min-height: auto;
-        padding-top: 132px;
       }
 
       .hero-media {
@@ -578,7 +603,7 @@
       }
 
       .hero {
-        padding: 116px 22px 46px;
+        padding: 156px 22px 46px;
       }
 
       h1 {

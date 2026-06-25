@@ -315,10 +315,32 @@
     @media (max-width: 980px) {
       .site-header {
         grid-template-columns: 1fr auto;
+        grid-template-areas:
+          "brand action"
+          "nav nav";
+        row-gap: 16px;
+      }
+
+      .brand {
+        grid-area: brand;
       }
 
       .nav {
+        grid-area: nav;
+        display: flex;
+        gap: 24px;
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+
+      .nav::-webkit-scrollbar {
         display: none;
+      }
+
+      .header-action {
+        grid-area: action;
       }
 
       .journey-hero,
@@ -353,7 +375,7 @@
       }
 
       .journey-hero {
-        padding: 116px 22px 58px;
+        padding: 156px 22px 58px;
       }
 
       h1 {
@@ -411,8 +433,8 @@
       <div class="hero-copy">
         <h1>委託故事</h1>
         <div class="rule" aria-hidden="true"></div>
-        <p class="lead">每一件委託，都從一段無法複製的關係開始。</p>
-        <p class="summary">有人為求婚而來，有人為告別而來。從第一次諮詢、私密採集，到作品交付，每段歷程都被安靜地保存。</p>
+        <p class="lead">每顆鑽石背後，都有一段只說給少數人聽的故事。</p>
+        <p class="summary">John 為求婚而來，Ethan 和 Nora 為告別前的約定而來。工坊只做一件事：把那段話，安靜地留住。</p>
       </div>
       <div class="hero-image" aria-label="一息之鑽訂製歷程主視覺"></div>
     </section>
@@ -421,8 +443,8 @@
       <div>
         <p class="label">委託動機</p>
         <h2>他要的，是一枚承載關係的戒指。</h2>
-        <p>委託人準備在十週年晚宴求婚。他希望戒指能承載一段共同生活的證明，不停留在品牌、克拉與價格的比較。</p>
-        <p>他的伴侶知道這是一件訂製珠寶，仍以為那只是挑選款式。直到諮詢當天，兩人才一起理解這顆鑽石將如何與他們的故事相連。</p>
+        <p>John 準備在十週年晚宴求婚。他希望戒指能承載一段共同生活的證明，不停留在品牌、克拉與價格的比較。</p>
+        <p>Claire 知道這是一件訂製珠寶，起初以為只是挑選款式。直到諮詢當天，兩人才一起理解這顆鑽石將如何與他們的故事相連。</p>
       </div>
       <div class="quote">「我想讓她戴著一件由我們共同留下的片刻。」</div>
     </section>
@@ -449,7 +471,7 @@
         <article class="moment">
           <div class="moment-num">03</div>
           <h3>等待成形</h3>
-          <p>工坊以專屬紀錄追蹤作品進度，委託人收到階段通知，保留求婚前的驚喜。</p>
+          <p>工坊以專屬紀錄追蹤作品進度，John 收到階段通知，保留求婚前的驚喜。</p>
         </article>
         <article class="moment">
           <div class="moment-num">04</div>
@@ -466,7 +488,7 @@
       <div>
         <p class="label">交付回饋</p>
         <h2>最後，她說那不像收到禮物。</h2>
-        <p>交付當天，委託人先確認戒指比例、刻字與證書。晚宴求婚後，伴侶回到工坊調整戒圍。她說那更像兩人一起完成的一件私人作品。</p>
+        <p>交付當天，John 先確認戒指比例、刻字與證書。晚宴求婚後，Claire 回到工坊調整戒圍。她說那更像兩人一起完成的一件私人作品。</p>
         <p>戒指成為日常配戴的一部分。證書被收在家中的書櫃裡，與週年卡片放在一起。</p>
         <a class="cta" href="mailto:linskacc@gmail.com">預約你的私人歷程</a>
       </div>
@@ -478,7 +500,7 @@
           <p class="label">第二則委託</p>
           <h2>當時間變得有限，他們選擇留下光。</h2>
         </div>
-        <p>另一位委託人與伴侶一同到訪。伴侶正在接受長期治療，兩人希望在仍能親自參與的時候，完成一件未來可以被觸碰的紀念作品。</p>
+        <p>Ethan 與 Nora 一同到訪。Nora 正在接受長期治療，兩人希望在仍能親自參與的時候，完成一件未來可以被觸碰的紀念作品。</p>
       </div>
       <div class="moments">
         <article class="moment">
