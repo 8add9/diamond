@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>一息之鑽｜把她的一口氣，留成一生的光。</title>
+  <style>
+    :root {
+      --ink: #0b0b0a;
+      --graphite: #11110f;
+      --charcoal: #1a1916;
+      --ivory: #f4f0e8;
+      --paper: #e8e1d5;
+      --line: rgba(244, 240, 232, .24);
+      --muted: rgba(244, 240, 232, .68);
+      --gold: #bda56d;
+      --silver: #d8d6d0;
+      --shadow: rgba(0, 0, 0, .45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--ivory);
+      font-family: "Noto Serif TC", "Songti TC", "Microsoft JhengHei", Georgia, serif;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+      padding: 28px clamp(22px, 5vw, 76px);
+      background: linear-gradient(to bottom, rgba(5, 5, 4, .72), transparent);
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      gap: clamp(20px, 4vw, 64px);
+      color: rgba(244, 240, 232, .78);
+      font-size: 13px;
+    }
+
+    .header-action {
+      justify-self: end;
+      border: 1px solid rgba(244, 240, 232, .58);
+      padding: 13px 24px;
+      font-size: 14px;
+      min-width: 132px;
+      text-align: center;
+      transition: border-color .2s ease, background .2s ease;
+    }
+
+    .header-action:hover {
+      border-color: var(--ivory);
+      background: rgba(244, 240, 232, .08);
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: minmax(280px, .85fr) minmax(380px, 1.15fr);
+      align-items: center;
+      padding: 110px clamp(24px, 7vw, 118px) 72px;
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 72% 58%, rgba(255, 255, 255, .15), transparent 17%),
+        linear-gradient(90deg, #070706 0%, #11110f 42%, #25231f 100%);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 28vh;
+      background: linear-gradient(to top, rgba(11, 11, 10, .98), transparent);
+      pointer-events: none;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 620px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(58px, 9vw, 122px);
+      font-weight: 400;
+      line-height: 1.04;
+    }
+
+    .rule {
+      width: 86px;
+      height: 1px;
+      margin: 34px 0;
+      background: rgba(244, 240, 232, .72);
+    }
+
+    .tagline {
+      margin: 0;
+      font-size: clamp(22px, 2.5vw, 38px);
+      line-height: 1.6;
+      color: rgba(244, 240, 232, .9);
+    }
+
+    .subline {
+      margin: 38px 0 0;
+      max-width: 420px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 2;
+    }
+
+    .hero-media {
+      position: relative;
+      z-index: 1;
+      min-height: 620px;
+      background:
+        linear-gradient(90deg, rgba(17, 17, 15, .34), rgba(17, 17, 15, 0) 24%),
+        url("breath-diamond-hero-crop.png");
+      background-size: min(74vw, 1040px) auto;
+      background-position: center 54%;
+      background-repeat: no-repeat;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 18%, #000 100%);
+    }
+
+    .ring-stage {
+      position: absolute;
+      width: min(62vw, 850px);
+      aspect-ratio: 1.38;
+      right: min(-6vw, -20px);
+      bottom: 6vh;
+      background: linear-gradient(145deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+      border-radius: 50%;
+      filter: drop-shadow(0 42px 70px var(--shadow));
+      display: none;
+    }
+
+    .diamond {
+      position: absolute;
+      left: 39%;
+      top: 42%;
+      width: clamp(108px, 12vw, 174px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        conic-gradient(from 12deg, #f8f8f4, #7b827f, #ffffff, #bcc2c0, #424846, #ffffff, #a7aca9, #f8f8f4),
+        radial-gradient(circle, #fff 0 10%, #cfd3d0 11% 22%, transparent 23%);
+      box-shadow:
+        0 0 0 8px rgba(255, 255, 255, .06),
+        0 0 54px rgba(255, 255, 255, .55),
+        inset 0 0 30px rgba(255,255,255,.75);
+    }
+
+    .diamond::before,
+    .diamond::after {
+      content: "";
+      position: absolute;
+      inset: 16%;
+      border: 1px solid rgba(50, 52, 50, .56);
+      transform: rotate(45deg);
+    }
+
+    .band {
+      position: absolute;
+      left: 13%;
+      top: 50%;
+      width: 72%;
+      height: 16%;
+      border: 12px solid rgba(225, 222, 214, .72);
+      border-radius: 50%;
+      box-shadow: inset 0 2px 14px rgba(255,255,255,.35), 0 18px 38px rgba(0,0,0,.6);
+    }
+
+    .chamber {
+      position: absolute;
+      right: 0;
+      top: 4%;
+      width: 42%;
+      height: 58%;
+      border: 1px solid rgba(244, 240, 232, .18);
+      border-radius: 50% 50% 8px 8px / 13% 13% 6px 6px;
+      box-shadow: inset 0 -20px 36px rgba(255,255,255,.08);
+      opacity: .74;
+    }
+
+    .mist {
+      position: absolute;
+      right: 8%;
+      top: -5%;
+      width: 30%;
+      height: 56%;
+      background:
+        radial-gradient(ellipse at 40% 60%, rgba(255,255,255,.2), transparent 58%),
+        radial-gradient(ellipse at 62% 30%, rgba(255,255,255,.16), transparent 48%);
+      filter: blur(14px);
+      opacity: .75;
+      animation: breathe 7s ease-in-out infinite;
+    }
+
+    @keyframes breathe {
+      0%, 100% { transform: translateY(0) scale(1); opacity: .58; }
+      50% { transform: translateY(-22px) scale(1.08); opacity: .9; }
+    }
+
+    .process-rail {
+      position: absolute;
+      z-index: 3;
+      right: clamp(24px, 4vw, 74px);
+      top: 190px;
+      display: grid;
+      gap: 20px;
+      color: rgba(244, 240, 232, .62);
+      text-align: center;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      display: none;
+    }
+
+    .rail-dot {
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(244, 240, 232, .35);
+      border-radius: 50%;
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+      color: var(--ivory);
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .section {
+      padding: clamp(72px, 9vw, 132px) clamp(24px, 7vw, 118px);
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1.18fr;
+      min-height: 420px;
+      padding: 0;
+      background: var(--paper);
+      color: #22201d;
+    }
+
+    .story-copy {
+      padding: clamp(54px, 8vw, 100px) clamp(28px, 8vw, 120px);
+      align-self: center;
+    }
+
+    .section-label {
+      font-size: 15px;
+      color: rgba(33, 31, 28, .65);
+      margin: 0 0 20px;
+    }
+
+    .story h2,
+    .process h2,
+    .certificate h2,
+    .consult h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 58px);
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .story p {
+      margin: 28px 0 0;
+      max-width: 560px;
+      font-size: 17px;
+      line-height: 2.1;
+      color: rgba(33, 31, 28, .76);
+    }
+
+    .certificate-card {
+      min-height: 420px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.1), transparent 34%),
+        linear-gradient(90deg, rgba(0,0,0,.6), rgba(0,0,0,.08)),
+        url("breath-diamond-concept.png");
+      background-position: 72% 58%;
+      background-size: 1480px auto;
+      border-left: 1px solid rgba(0,0,0,.18);
+    }
+
+    .process {
+      background: linear-gradient(180deg, #0b0b0a, #11100e);
+      border-top: 1px solid rgba(244, 240, 232, .1);
+    }
+
+    .process .section-label,
+    .certificate .section-label,
+    .consult .section-label {
+      color: rgba(244, 240, 232, .58);
+    }
+
+    .process-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 44px;
+      margin-bottom: 76px;
+    }
+
+    .process-heading p {
+      max-width: 420px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 36px;
+      align-items: start;
+    }
+
+    .step {
+      position: relative;
+      padding-top: 28px;
+      border-top: 1px solid rgba(244, 240, 232, .22);
+    }
+
+    .step-number {
+      font-family: Georgia, serif;
+      color: var(--gold);
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .step h3 {
+      margin: 0 0 12px;
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .certificate {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: clamp(40px, 7vw, 112px);
+      align-items: center;
+      background: #151411;
+    }
+
+    .cert-visual {
+      min-height: 480px;
+      display: grid;
+      place-items: center;
+      background:
+        linear-gradient(140deg, rgba(255,255,255,.05), transparent 38%),
+        radial-gradient(circle at 80% 15%, rgba(189,165,109,.16), transparent 32%);
+      border: 1px solid rgba(244, 240, 232, .16);
+    }
+
+    .paper {
+      width: min(76%, 420px);
+      aspect-ratio: .78;
+      background: linear-gradient(145deg, #e9e1d3, #cfc5b5);
+      color: #211f1c;
+      padding: 54px 38px;
+      box-shadow: 0 36px 70px rgba(0,0,0,.4);
+      transform: rotate(-5deg);
+    }
+
+    .paper-title {
+      font-size: 36px;
+      margin-bottom: 18px;
+    }
+
+    .paper-rule {
+      height: 1px;
+      background: rgba(33,31,28,.3);
+      margin: 28px 0;
+    }
+
+    .paper p {
+      margin: 0;
+      color: rgba(33,31,28,.66);
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: .18em;
+      line-height: 2;
+      text-transform: uppercase;
+    }
+
+    .certificate-copy p {
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 2.1;
+      max-width: 560px;
+    }
+
+    .fine-print {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(244, 240, 232, .18);
+      color: rgba(244, 240, 232, .5);
+      font-family: "Microsoft JhengHei", sans-serif;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .consult {
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(244,240,232,.12), transparent 38%),
+        #090908;
+    }
+
+    .consult-inner {
+      max-width: 720px;
+    }
+
+    .consult p {
+      margin: 26px auto 38px;
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 2;
+    }
+
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      min-width: 180px;
+      border: 1px solid rgba(244, 240, 232, .55);
+      padding: 16px 28px;
+      font-size: 15px;
+      background: transparent;
+      color: var(--ivory);
+      font-family: inherit;
+      cursor: pointer;
+      transition: background .2s ease, color .2s ease, border-color .2s ease;
+    }
+
+    .btn.primary {
+      background: var(--ivory);
+      color: #11100e;
+      border-color: var(--ivory);
+    }
+
+    .btn:hover {
+      background: rgba(244, 240, 232, .1);
+      border-color: var(--ivory);
+    }
+
+    .btn.primary:hover {
+      background: #fff;
+      color: #090908;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 28px clamp(24px, 7vw, 118px);
+      border-top: 1px solid rgba(244, 240, 232, .14);
+      color: rgba(244, 240, 232, .48);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+
+    @media (max-width: 980px) {
+      .site-header {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 132px;
+      }
+
+      .hero-media {
+        min-height: 460px;
+        margin-top: 40px;
+        background-size: 880px auto;
+        background-position: center 50%;
+        mask-image: linear-gradient(180deg, #000 0%, #000 78%, transparent 100%);
+      }
+
+      .ring-stage {
+        width: 100%;
+        right: 0;
+      }
+
+      .process-rail {
+        display: none;
+      }
+
+      .story,
+      .certificate {
+        grid-template-columns: 1fr;
+      }
+
+      .certificate-card {
+        min-height: 320px;
+      }
+
+      .steps {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-heading {
+        display: block;
+      }
+
+      .process-heading p {
+        margin-top: 26px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .site-header {
+        padding: 22px 18px;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      .header-action {
+        min-width: auto;
+        padding: 11px 14px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 116px 22px 46px;
+      }
+
+      h1 {
+        font-size: 52px;
+      }
+
+      .tagline {
+        font-size: 24px;
+      }
+
+      .subline {
+        font-size: 15px;
+      }
+
+      .hero-media {
+        min-height: 330px;
+        background-size: 670px auto;
+        background-position: 34% 50%;
+      }
+
+      .band {
+        border-width: 8px;
+      }
+
+      .story-copy,
+      .section {
+        padding: 62px 22px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .cert-visual {
+        min-height: 380px;
+      }
+
+      footer {
+        display: block;
+        line-height: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#">一息之鑽</a>
+    <nav class="nav" aria-label="主要導覽">
+      <a href="#story">產品故事</a>
+      <a href="#process">製作工藝</a>
+      <a href="#certificate">鑽石來源</a>
+      <a href="#consult">專屬鑑定</a>
+    </nav>
+    <a class="header-action" href="#consult">預約私人諮詢</a>
+  </header>
+
+  <main>
+    <section class="hero" aria-label="一息之鑽主視覺">
+      <div class="hero-copy">
+        <h1>一息之鑽</h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="tagline">把她的一口氣，留成一生的光。</p>
+        <p class="subline">以科學萃鍊摯愛的氣息，將無形的思念，化作可被佩戴與收藏的鑽石。</p>
+      </div>
+      <div class="hero-media" aria-hidden="true">
+        <div class="mist"></div>
+        <div class="ring-stage">
+          <div class="chamber"></div>
+          <div class="band"></div>
+          <div class="diamond"></div>
+        </div>
+      </div>
+      <aside class="process-rail" aria-hidden="true">
+        <span>Breath<br>Capture</span>
+        <span class="rail-dot">∴</span>
+        <span>Carbon<br>Extraction</span>
+        <span class="rail-dot">◇</span>
+        <span>HPHT<br>Growth</span>
+        <span class="rail-dot">◇</span>
+        <span>Diamond<br>Creation</span>
+      </aside>
+    </section>
+
+    <section class="story" id="story">
+      <div class="story-copy">
+        <p class="section-label">產品故事</p>
+        <h2>有些愛，值得被永恆收藏。</h2>
+        <p>一口氣，承載著最真實的存在；一顆鑽石，記錄著最深刻的思念。一息之鑽讓親密關係不只被說出口，也被封存成光。</p>
+      </div>
+      <div class="certificate-card" aria-label="來源證書與鑽石示意圖"></div>
+    </section>
+
+    <section class="section process" id="process">
+      <div class="process-heading">
+        <div>
+          <p class="section-label">專屬製作流程</p>
+          <h2>將無形的思念，淬鍊為永恆的光。</h2>
+        </div>
+        <p>每一件作品皆以獨立批次管理，從氣息採集、碳元素提取、鑽石培育到切割鑲嵌，保留完整來源紀錄。</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <div class="step-number">01</div>
+          <h3>氣息採集</h3>
+          <p>在私人空間中採集指定對象的呼出氣體，建立專屬批次。</p>
+        </article>
+        <article class="step">
+          <div class="step-number">02</div>
+          <h3>碳源提取</h3>
+          <p>捕捉並純化二氧化碳，再轉換為可追蹤的碳來源。</p>
+        </article>
+        <article class="step">
+          <div class="step-number">03</div>
+          <h3>鑽石培育</h3>
+          <p>以高溫高壓或實驗室培育工藝，使碳逐步形成晶體。</p>
+        </article>
+        <article class="step">
+          <div class="step-number">04</div>
+          <h3>切割與鑲嵌</h3>
+          <p>依照訂製款式完成切磨、檢驗、鑲嵌與收藏包裝。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section certificate" id="certificate">
+      <div class="cert-visual" aria-hidden="true">
+        <div class="paper">
+          <div class="paper-title">一息之鑽</div>
+          <div class="paper-rule"></div>
+          <p>Provenance Certificate<br>Breath Carbon Batch<br>Private Atelier Record</p>
+        </div>
+      </div>
+      <div class="certificate-copy">
+        <p class="section-label">鑽石來源證明</p>
+        <h2>每一道光，都有被記錄的來源。</h2>
+        <p>證書標示採集日期、碳源批次、培育編號與成品資訊。它不是量產珠寶的流水編碼，而是只屬於兩個人的來源紀錄。</p>
+        <div class="fine-print">實際製程需依實驗室可行性、鑽石規格與批次純化結果調整；商品頁為概念提案，科學宣稱與來源比例需於量產前完成驗證。</div>
+      </div>
+    </section>
+
+    <section class="section consult" id="consult">
+      <div class="consult-inner">
+        <p class="section-label">專屬於你們的故事，從一次對話開始。</p>
+        <h2>預約私人諮詢</h2>
+        <p>選擇戒指、裸鑽、項鍊或紀念收藏。顧問將依照採集方式、預算、克拉數與交付時程，建立專屬提案。</p>
+        <div class="button-row">
+          <a class="btn primary" href="mailto:atelier@example.com">預約私人諮詢</a>
+          <a class="btn" href="#process">了解製作流程</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>YI XI DIAMOND ATELIER</span>
+    <span>Private provenance jewelry concept</span>
+  </footer>
+</body>
+</html>
