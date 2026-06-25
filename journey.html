@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>委託故事｜一息之鑽</title>
+  <style>
+    :root {
+      --ink: #0b0b0a;
+      --graphite: #11110f;
+      --ivory: #f4f0e8;
+      --paper: #e8e1d5;
+      --muted: rgba(244, 240, 232, .68);
+      --line: rgba(244, 240, 232, .18);
+      --gold: #bda56d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--ink);
+      color: var(--ivory);
+      font-family: "Noto Serif TC", "Songti TC", "Microsoft JhengHei", Georgia, serif;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .site-header {
+      position: fixed;
+      z-index: 10;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 24px;
+      padding: 28px clamp(22px, 5vw, 76px);
+      background: linear-gradient(to bottom, rgba(5, 5, 4, .78), transparent);
+    }
+
+    .brand {
+      font-size: 20px;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .nav {
+      display: flex;
+      gap: clamp(18px, 3vw, 44px);
+      color: rgba(244, 240, 232, .78);
+      font-size: 13px;
+    }
+
+    .header-action {
+      justify-self: end;
+      border: 1px solid rgba(244, 240, 232, .58);
+      padding: 13px 24px;
+      font-size: 14px;
+      min-width: 132px;
+      text-align: center;
+    }
+
+    .journey-hero {
+      min-height: 92svh;
+      display: grid;
+      grid-template-columns: minmax(320px, .82fr) minmax(420px, 1.18fr);
+      align-items: center;
+      gap: clamp(36px, 7vw, 110px);
+      padding: 130px clamp(24px, 7vw, 118px) 70px;
+      background:
+        radial-gradient(circle at 68% 45%, rgba(244, 240, 232, .13), transparent 24%),
+        linear-gradient(90deg, #070706 0%, #11110f 48%, #23211d 100%);
+    }
+
+    .hero-copy {
+      max-width: 620px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(54px, 8vw, 116px);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .rule {
+      width: 86px;
+      height: 1px;
+      margin: 34px 0;
+      background: rgba(244, 240, 232, .72);
+    }
+
+    .lead {
+      margin: 0;
+      color: rgba(244, 240, 232, .88);
+      font-size: clamp(22px, 2.4vw, 36px);
+      line-height: 1.65;
+    }
+
+    .summary {
+      margin: 34px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 2;
+      max-width: 460px;
+    }
+
+    .hero-image {
+      min-height: 520px;
+      background:
+        linear-gradient(90deg, rgba(17, 17, 15, .2), rgba(17, 17, 15, 0) 28%),
+        url("breath-diamond-hero-crop.png");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 44px 90px rgba(0, 0, 0, .38);
+      border: 1px solid rgba(244, 240, 232, .1);
+    }
+
+    .section {
+      padding: clamp(72px, 9vw, 128px) clamp(24px, 7vw, 118px);
+    }
+
+    .portrait {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(44px, 8vw, 124px);
+      background: var(--paper);
+      color: #211f1c;
+    }
+
+    .label {
+      margin: 0 0 20px;
+      color: rgba(33, 31, 28, .62);
+      font-size: 15px;
+    }
+
+    .portrait h2,
+    .timeline h2,
+    .delivery h2 {
+      margin: 0;
+      font-size: clamp(32px, 4vw, 58px);
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    .portrait p {
+      margin: 28px 0 0;
+      color: rgba(33, 31, 28, .74);
+      font-size: 17px;
+      line-height: 2.1;
+    }
+
+    .quote {
+      align-self: center;
+      padding: clamp(36px, 5vw, 62px);
+      border-left: 1px solid rgba(33, 31, 28, .22);
+      font-size: clamp(24px, 3vw, 42px);
+      line-height: 1.55;
+      color: #14130f;
+    }
+
+    .timeline {
+      background: linear-gradient(180deg, #0b0b0a, #11100e);
+    }
+
+    .timeline .label,
+    .delivery .label {
+      color: rgba(244, 240, 232, .58);
+    }
+
+    .timeline-head {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: clamp(40px, 7vw, 110px);
+      align-items: end;
+      margin-bottom: 70px;
+    }
+
+    .timeline-head p {
+      margin: 0;
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 2;
+    }
+
+    .moments {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 34px;
+    }
+
+    .moment {
+      border-top: 1px solid var(--line);
+      padding-top: 28px;
+    }
+
+    .moment-num {
+      color: var(--gold);
+      font-size: 22px;
+      margin-bottom: 18px;
+    }
+
+    .moment h3 {
+      margin: 0 0 14px;
+      font-size: 22px;
+      font-weight: 400;
+    }
+
+    .moment p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+
+    .delivery {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: clamp(44px, 8vw, 120px);
+      align-items: center;
+      background: #151411;
+    }
+
+    .memorial {
+      background: var(--paper);
+      color: #211f1c;
+    }
+
+    .memorial .label {
+      color: rgba(33, 31, 28, .62);
+    }
+
+    .memorial .timeline-head p,
+    .memorial .moment p {
+      color: rgba(33, 31, 28, .72);
+    }
+
+    .memorial .moment {
+      border-top-color: rgba(33, 31, 28, .18);
+    }
+
+    .memorial .moment h3,
+    .memorial h2 {
+      color: #211f1c;
+    }
+
+    .case-card {
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(244, 240, 232, .18), transparent 34%),
+        linear-gradient(145deg, rgba(255,255,255,.04), transparent 48%);
+      border: 1px solid var(--line);
+    }
+
+    .stone {
+      width: min(52%, 260px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        conic-gradient(from 12deg, #fff, #8f9490, #f7f7f2, #c9ceca, #454a47, #fff, #a7aca9, #fff);
+      box-shadow:
+        0 0 0 10px rgba(255,255,255,.04),
+        0 0 80px rgba(255,255,255,.32),
+        inset 0 0 32px rgba(255,255,255,.7);
+      position: relative;
+    }
+
+    .stone::before {
+      content: "";
+      position: absolute;
+      inset: 18%;
+      border: 1px solid rgba(20, 20, 18, .45);
+      transform: rotate(45deg);
+    }
+
+    .delivery p {
+      margin: 28px 0 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 2.1;
+      max-width: 560px;
+    }
+
+    .cta {
+      margin-top: 38px;
+      display: inline-block;
+      border: 1px solid rgba(244, 240, 232, .58);
+      padding: 16px 28px;
+      font-size: 15px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 28px clamp(24px, 7vw, 118px);
+      border-top: 1px solid rgba(244, 240, 232, .14);
+      color: rgba(244, 240, 232, .48);
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .08em;
+    }
+
+    @media (max-width: 980px) {
+      .site-header {
+        grid-template-columns: 1fr auto;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .journey-hero,
+      .portrait,
+      .timeline-head,
+      .delivery {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-image {
+        min-height: 420px;
+      }
+
+      .moments {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .site-header {
+        padding: 22px 18px;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      .header-action {
+        min-width: auto;
+        padding: 11px 14px;
+        font-size: 13px;
+      }
+
+      .journey-hero {
+        padding: 116px 22px 58px;
+      }
+
+      h1 {
+        font-size: 52px;
+      }
+
+      .lead {
+        font-size: 24px;
+      }
+
+      .hero-image {
+        min-height: 300px;
+      }
+
+      .section {
+        padding: 62px 22px;
+      }
+
+      .quote {
+        padding: 28px 0 0;
+        border-left: 0;
+        border-top: 1px solid rgba(33, 31, 28, .22);
+      }
+
+      .moments {
+        grid-template-columns: 1fr;
+      }
+
+      .case-card {
+        min-height: 320px;
+      }
+
+      footer {
+        display: block;
+        line-height: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">一息之鑽</a>
+    <nav class="nav" aria-label="主要導覽">
+      <a href="index.html#story">產品故事</a>
+      <a href="index.html#process">製作工藝</a>
+      <a href="journey.html">委託故事</a>
+      <a href="index.html#certificate">鑽石來源</a>
+      <a href="index.html#consult">專屬鑑定</a>
+    </nav>
+    <a class="header-action" href="mailto:linskacc@gmail.com">預約私人諮詢</a>
+  </header>
+
+  <main>
+    <section class="journey-hero">
+      <div class="hero-copy">
+        <h1>委託故事</h1>
+        <div class="rule" aria-hidden="true"></div>
+        <p class="lead">每一件委託，都從一段無法複製的關係開始。</p>
+        <p class="summary">有人為求婚而來，有人為告別而來。從第一次諮詢、私密採集，到作品交付，每段歷程都被安靜地保存。</p>
+      </div>
+      <div class="hero-image" aria-label="一息之鑽訂製歷程主視覺"></div>
+    </section>
+
+    <section class="section portrait">
+      <div>
+        <p class="label">委託動機</p>
+        <h2>他要的，是一枚承載關係的戒指。</h2>
+        <p>委託人準備在十週年晚宴求婚。他希望戒指能承載一段共同生活的證明，不停留在品牌、克拉與價格的比較。</p>
+        <p>他的伴侶知道這是一件訂製珠寶，仍以為那只是挑選款式。直到諮詢當天，兩人才一起理解這顆鑽石將如何與他們的故事相連。</p>
+      </div>
+      <div class="quote">「我想讓她戴著一件由我們共同留下的片刻。」</div>
+    </section>
+
+    <section class="section timeline">
+      <div class="timeline-head">
+        <div>
+          <p class="label">到訪與體驗</p>
+          <h2>從一次安靜的採集開始。</h2>
+        </div>
+        <p>整個體驗被設計成私人會面。沒有展示櫃式的推銷，沒有喧鬧的儀式，只保留兩人與工坊顧問之間的對話。</p>
+      </div>
+      <div class="moments">
+        <article class="moment">
+          <div class="moment-num">01</div>
+          <h3>私人諮詢</h3>
+          <p>顧問先了解兩人的故事、預算、配戴習慣與求婚安排，再提出戒台與鑽石規格。</p>
+        </article>
+        <article class="moment">
+          <div class="moment-num">02</div>
+          <h3>共同採集</h3>
+          <p>兩人在獨立空間完成採集。過程短暫、安靜，像把一段日常呼吸留進作品的開端。</p>
+        </article>
+        <article class="moment">
+          <div class="moment-num">03</div>
+          <h3>等待成形</h3>
+          <p>工坊以專屬紀錄追蹤作品進度，委託人收到階段通知，保留求婚前的驚喜。</p>
+        </article>
+        <article class="moment">
+          <div class="moment-num">04</div>
+          <h3>典藏交付</h3>
+          <p>成品連同來源證書與典藏盒交付。戒指在晚宴前一週完成最後確認。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section delivery">
+      <div class="case-card" aria-hidden="true">
+        <div class="stone"></div>
+      </div>
+      <div>
+        <p class="label">交付回饋</p>
+        <h2>最後，她說那不像收到禮物。</h2>
+        <p>交付當天，委託人先確認戒指比例、刻字與證書。晚宴求婚後，伴侶回到工坊調整戒圍。她說那更像兩人一起完成的一件私人作品。</p>
+        <p>戒指成為日常配戴的一部分。證書被收在家中的書櫃裡，與週年卡片放在一起。</p>
+        <a class="cta" href="mailto:linskacc@gmail.com">預約你的私人歷程</a>
+      </div>
+    </section>
+
+    <section class="section timeline memorial">
+      <div class="timeline-head">
+        <div>
+          <p class="label">第二則委託</p>
+          <h2>當時間變得有限，他們選擇留下光。</h2>
+        </div>
+        <p>另一位委託人與伴侶一同到訪。伴侶正在接受長期治療，兩人希望在仍能親自參與的時候，完成一件未來可以被觸碰的紀念作品。</p>
+      </div>
+      <div class="moments">
+        <article class="moment">
+          <div class="moment-num">01</div>
+          <h3>共同決定</h3>
+          <p>他們沒有把這次委託交給家人代辦。兩人一起選擇款式、尺寸與刻字，讓作品保留當下的意願。</p>
+        </article>
+        <article class="moment">
+          <div class="moment-num">02</div>
+          <h3>安靜採集</h3>
+          <p>採集安排在身體狀況穩定的午後。顧問保留足夠時間，讓整個過程維持從容。</p>
+        </article>
+        <article class="moment">
+          <div class="moment-num">03</div>
+          <h3>雙人刻印</h3>
+          <p>戒圈內側刻下兩人的縮寫與日期。證書則記錄委託來源與作品編號，收入典藏盒中。</p>
+        </article>
+        <article class="moment">
+          <div class="moment-num">04</div>
+          <h3>恆久留存</h3>
+          <p>交付時，伴侶親手戴上戒指。對他們而言，鑽石的價值來自它能陪時間走得更遠。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>YI XI DIAMOND ATELIER</span>
+    <span>Private provenance jewelry concept</span>
+  </footer>
+</body>
+</html>
